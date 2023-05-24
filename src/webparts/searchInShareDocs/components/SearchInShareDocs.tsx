@@ -21,6 +21,7 @@ IStates> {
       this.saveInput = this.saveInput.bind(this);
       this.saveSelected = this.saveSelected.bind(this);
       this.search = this.search.bind(this);
+      this.ifEnter = this.ifEnter.bind(this);
   }
 
   public saveInput(e: any) {
@@ -33,6 +34,13 @@ IStates> {
     let state : any = {}
     state["Selected"] = e.target.value;
     this.setState(state);
+  }
+
+  public ifEnter(e: any) {
+    if(e.key == 'Enter') {
+      e.preventDefault();
+      this.search();
+    }
   }
 
   private async search() {
@@ -54,7 +62,7 @@ IStates> {
   public render(): React.ReactElement<ISearchInShareDocsProps> {
     return(
       <div>
-          <form>
+          <form onSubmit={(e) => this.search()}>
               <fieldset className={styles.searchForm}>
                   <legend>Search in ShareDocs</legend>
                   <div>
@@ -64,6 +72,7 @@ IStates> {
                               id="Search"
                               placeholder='Enter free text or filter search'
                               onChange={(e) => this.saveInput(e)}
+                              onKeyUp={(e) => this.ifEnter(e)}
                           />
                           <select onChange={(e) => this.saveSelected(e)} className={styles.dropdown}>
                               <option value="" selected>No Filter</option>
@@ -78,7 +87,7 @@ IStates> {
                               <option id="Title" value="Title">Title</option>
                           </select>
                       </div>
-                      <PrimaryButton className={styles.searchBtn}  onClick={(e) => this.search()}>
+                      <PrimaryButton className={styles.searchBtn} onClick={(e) => this.search()}>
                           <img src={require('../assets/searchIcon.png')} alt="search icon" className={styles.icon} />
                           Search in ShareDocs
                       </PrimaryButton>
