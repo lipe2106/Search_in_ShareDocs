@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "search-in-share-docs-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/searchInShareDocs/SearchInShareDocsWebPart.js",
+          "manifest": "./src/webparts/searchInShareDocs/SearchInShareDocsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SearchInShareDocsWebPartStrings": "lib/webparts/searchInShareDocs/loc/{locale}.js"
+  }
+}
